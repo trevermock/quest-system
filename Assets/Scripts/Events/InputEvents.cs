@@ -3,6 +3,13 @@ using System;
 
 public class InputEvents
 {
+    public InputEventContext inputEventContext { get; private set; } = InputEventContext.DEFAULT;
+
+    public void ChangeInputEventContext(InputEventContext newContext) 
+    {
+        this.inputEventContext = newContext;
+    }
+
     public event Action<Vector2> onMovePressed;
     public void MovePressed(Vector2 moveDir) 
     {
@@ -12,12 +19,12 @@ public class InputEvents
         }
     }
 
-    public event Action onSubmitPressed;
+    public event Action<InputEventContext> onSubmitPressed;
     public void SubmitPressed()
     {
         if (onSubmitPressed != null) 
         {
-            onSubmitPressed();
+            onSubmitPressed(this.inputEventContext);
         }
     }
 

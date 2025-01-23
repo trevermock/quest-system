@@ -39,6 +39,8 @@ public class PlayerMovementController : MonoBehaviour
     private void DisablePlayerMovement() 
     {
         movementDisabled = true;
+        // also ensure we stop any current movement
+        velocity = Vector2.zero;
     }
 
     private void EnablePlayerMovement() 
